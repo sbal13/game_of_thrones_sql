@@ -16,20 +16,29 @@
 	
 # Instructions
 
-From the config directory, run the environment.rb file in the config folder to run the files. To populate or repopulate the database, run "repopulate" . 
+From the config directory, run the environment.rb file in the config folder to run the files. To populate or repopulate the database, run "repopulate" 
 
 
-* Who attacks most often? (Not attacker king, general attacker) . 
-
-	Character.most_attacks_sql_query . 
-	or . 
-	Character.most_attacks . 
+* Who attacks most often? (Not attacker king, general attacker)  
 
 
-* Which attacker most often loses a battle? (Not attacker king, general attacker) . 
-	Character.most_losses_sql_query
-	or
-	Character.most_losses
+	Character.most_attacks_sql_query
+	
+		or  
+		
+	Character.most_attacks  
+
+
+* Which attacker most often loses a battle? (Not attacker king, general attacker) .   
+
+
+	Character.most_losses_sql_query  
+	
+		or
+		
+	Character.most_losses  
+	
+	
 
 * What is the most common type of battle?
 	Battle.most_common_by_id("battle_type")
