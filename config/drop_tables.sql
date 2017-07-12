@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS regions;
+DROP TABLE IF EXISTS houses;
+DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS battle_types;
+DROP TABLE IF EXISTS battles;
+DROP TABLE IF EXISTS battle_attacker_commanders;
+DROP TABLE IF EXISTS battle_attacker_kings;
+DROP TABLE IF EXISTS battle_attacker_houses;
+DROP TABLE IF EXISTS battle_defender_commanders;
+DROP TABLE IF EXISTS battle_defender_kings;
+DROP TABLE IF EXISTS battle_defender_houses;

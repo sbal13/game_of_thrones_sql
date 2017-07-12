@@ -20,7 +20,7 @@ class DataSorter
 
 
 	def self.normalize_names(names_array)
-		names_array.map do |name_string|
+		names = names_array.map do |name_string|
 			if name_string.include?('/')
 				first_names, last_name = name_string.split(' ')
 				name1, name2 = first_names.split('/')
@@ -32,8 +32,9 @@ class DataSorter
 			else
 				name_string
 			end
-		end.flatten.uniq
+		end.flatten
 
+		names.map{|name| name.strip}.uniq
 	end
 
 

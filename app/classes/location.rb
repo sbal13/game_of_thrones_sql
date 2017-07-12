@@ -1,9 +1,17 @@
 class Location < ClassCreator
-	def self.populate_from_data_sorter
+	def battles
 
-		locations = DataSorter.hash_to_unique(CSVParser.parse_to_hash, :location)
-		locations.map!{|location| [location]}
+		Battle.all.select{|battle| battle.location_id == self.id}
+	end
 
-		self.create_from_array(locations)
+	def self.most_battles
+		loc_num_battles = self.all.collect do |location|
+			[location, location.battles.length]
+		end
+
+		highest_num = loc_num_battles.sort_by{|row| row[1]}.last[1]
+		loc_num_battles.collect{|loc| loc[0] if loc[1] == highest_num}.compact
 	end
 end
+
+

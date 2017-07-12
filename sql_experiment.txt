@@ -1,0 +1,36 @@
+
+def self.most_attacks_sql_query
+	union = "SELECT * FROM battle_attacker_commanders UNION SELECT * FROM battle_attacker_kings"
+
+	count_table = "SELECT character_id AS cid, COUNT(DISTINCT battle_id) AS cnt FROM (#{union}) AS battles GROUP BY cid"
+
+
+
+	sql = <<-SQL
+		SELECT c.name
+	 	FROM (#{count_table}) as b
+	 	INNER JOIN characters AS c
+	 	ON cid = c.id
+	 	WHERE b.cnt = (SELECT MAX(cnt) FROM (#{count_table}) AS m_count)
+	SQL
+end
+
+def self.most_losses_sql_query
+	 count_table = <<-SQL 
+	 				SELECT character_id AS cid, COUNT(DISTINCT battle_id) AS cnt 
+	 				FROM (#{union}) AS participations 
+	 				INNER JOIN battles 
+	 				ON battles.id = participations.battle_id 
+	 				WHERE battles.outcome = 'loss' 
+	 				GROUP BY cid
+	 			SQL
+
+	 sql = <<-SQL
+	 	SELECT c.name
+	 	FROM ({count_table}) as b
+	 	INNER JOIN characters AS c
+	 	ON cid = c.id
+	 	WHERE b.cnt = (SELECT MAX(cnt) FROM (#{count_table}) AS m_count)
+	 SQL
+
+end

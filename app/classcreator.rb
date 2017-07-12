@@ -97,6 +97,24 @@ class ClassCreator
 		
 	end
 
+	def self.populate_from_data_sorter(*data_set)
+
+		elements = DataSorter.hash_to_unique(CSVParser.parse_to_hash, *data_set).map{|element| [element]}
+		
+		self.create_from_array(elements)
+	end
+	
+	def self.populate_relational_table(type)
+		relational_table_data =  DataSorter.select_columns(CSVParser.parse_to_hash, :name, type)
+		relational_table_data.each do |row|
+			battle = Battle.find_by(name: row[0])[0]
+			characters = Character.all.select{ |character| !row[1].nil? && row[1].include?(character.name.split(" ").first)}
+			characters.each do |character|
+				self.create(battle_id: battle.id, character_id: character.id)
+			end
+		end
+	end
+
 	def self.create_from_array(data_array)
 		data_array.each do |row|
 			hash = {}
@@ -108,6 +126,7 @@ class ClassCreator
 		end
 
 	end
+
 
 	private
 
@@ -131,5 +150,18 @@ class ClassCreator
 		headers = obtain_headers
 		headers.each {|header| self.send(:attr_accessor, header.to_sym)}
 	end
+
+	def self.drop_count_table
+		<<-SQL 
+			DROP TABLE IF EXISTS count_table;
+		SQL
+	end
+
+	def self.drop_max_count
+		<<-SQL
+			DROP TABLE IF EXISTS max_count;
+		SQL
+	end
+
 
 end
