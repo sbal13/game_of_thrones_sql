@@ -49,6 +49,7 @@ From the config directory, run the environment.rb file in the config folder to r
 
 
 * List the battles attackers lost where attackers outnumbered defenders  
+
 	Battle.lost_battles_attackers_outnumber_defenders_sql_query  
 	
 	Battle.loss_attack_outnumber_defense  
