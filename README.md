@@ -21,35 +21,29 @@ From the config directory, run the environment.rb file in the config folder to r
 
 * Who attacks most often? (Not attacker king, general attacker)  
 
-	Character.most_attacks_sql_query
-		
-	Character.most_attacks  
+		Character.most_attacks_sql_query
+		Character.most_attacks  
 
 
 * Which attacker most often loses a battle? (Not attacker king, general attacker) .   
 
-
-	Character.most_losses_sql_query  
-		
-	Character.most_losses  
+		Character.most_losses_sql_query  
+		Character.most_losses  
 	
 	
 
 * What is the most common type of battle?  
 
-	Battle.most_common_by_id("battle_type")  
-	
-	Battle.most_common_battle_type  
+		Battle.most_common_by_id("battle_type")  
+		Battle.most_common_battle_type  
 
 * What location has seen the most amount of battles?  
 
-	Battle.most_common_by_id("location")  
-	
-	Location.most_battles  
+		Battle.most_common_by_id("location")  
+		Location.most_battles  
 
 
 * List the battles attackers lost where attackers outnumbered defenders  
 
-	Battle.lost_battles_attackers_outnumber_defenders_sql_query  
-	
-	Battle.loss_attack_outnumber_defense  
+		Battle.lost_battles_attackers_outnumber_defenders_sql_query  
+		Battle.loss_attack_outnumber_defense  
